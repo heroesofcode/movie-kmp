@@ -84,7 +84,21 @@ android {
     }
 }
 
-detekt {
-    autoCorrect = true
+dependencies {
+    detektPlugins(libs.detekt.formatting)
 }
+
+tasks.register<io.gitlab.arturbosch.detekt.Detekt>("detektCommon") {
+    description = "Runs detekt analysis on the main and test source set."
+    config.setFrom(files("$rootDir/config/detekt/detekt.yml"))
+    setSource(files(
+        "$projectDir/src/commonMain/kotlin",
+        "$projectDir/src/commonTest/kotlin"
+    ))
+    include("**/*.kt")
+    include("**/*.kts")
+    exclude("**/resources/**")
+    exclude("**/build/**")
+}
+
 
