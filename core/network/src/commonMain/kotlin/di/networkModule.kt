@@ -21,14 +21,16 @@ val networkModule = module {
             }
 
             install(ContentNegotiation) {
-                json(Json {
-                    explicitNulls = false
-                    ignoreUnknownKeys = true
-                    isLenient = true
-                    prettyPrint = true
-                    encodeDefaults = true
-                    classDiscriminator = "#class"
-                })
+                json(
+                    Json {
+                        explicitNulls = false
+                        ignoreUnknownKeys = true
+                        isLenient = true
+                        prettyPrint = true
+                        encodeDefaults = true
+                        classDiscriminator = "#class"
+                    }
+                )
             }
         }
     }
