@@ -22,13 +22,28 @@ import org.koin.compose.KoinApplication
 @Preview
 fun App() {
     KoinApplication(application = {
+
+
+
+
         modules(appModule)
     }) {
         MovieAppTheme {
             var showContent by remember { mutableStateOf(false) }
             Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-                Button(onClick = { showContent = !showContent }) {
-                    Text("Click me!")
+                Button(onClick = { showContent = !showContent }) { Text("Click me!")
+
+
+
+
+
+
+
+
+
+
+
+
                 }
                 AnimatedVisibility(showContent) {
                     val greeting = remember { Greeting().greet() }
