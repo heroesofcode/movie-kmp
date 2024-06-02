@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.detekt)
+    alias(libs.plugins.ksp)
 }
 
 kotlin {
@@ -34,6 +35,8 @@ kotlin {
             implementation(libs.androidx.activity.compose)
         }
         commonMain.dependencies {
+            implementation(projects.core.network)
+
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.material)
@@ -53,7 +56,7 @@ android {
 
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     sourceSets["main"].res.srcDirs("src/androidMain/res")
-    sourceSets["main"].resources.srcDirs("src/commonMain/resources")
+    sourceSets["main"].resources.srcDirs("src/commonMain/composeResources")
 
     defaultConfig {
         applicationId = "io.heroesofcode"
@@ -93,12 +96,11 @@ tasks.register<io.gitlab.arturbosch.detekt.Detekt>("detektCommon") {
     config.setFrom(files("$rootDir/config/detekt/detekt.yml"))
     setSource(files(
         "$projectDir/src/commonMain/kotlin",
-        "$projectDir/src/commonTest/kotlin"
+        "$projectDir/src/commonTest/kotlin",
+        "$rootDir/core/network/src/commonMain/kotlin"
     ))
     include("**/*.kt")
     include("**/*.kts")
     exclude("**/resources/**")
     exclude("**/build/**")
 }
-
-
