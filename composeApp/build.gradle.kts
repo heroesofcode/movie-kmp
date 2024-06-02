@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.detekt)
+    alias(libs.plugins.ksp)
 }
 
 kotlin {
@@ -103,5 +104,3 @@ tasks.register<io.gitlab.arturbosch.detekt.Detekt>("detektCommon") {
     exclude("**/resources/**")
     exclude("**/build/**")
 }
-
-
