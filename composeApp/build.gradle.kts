@@ -34,6 +34,8 @@ kotlin {
             implementation(libs.androidx.activity.compose)
         }
         commonMain.dependencies {
+            implementation(projects.core.network)
+
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.material)
@@ -93,7 +95,8 @@ tasks.register<io.gitlab.arturbosch.detekt.Detekt>("detektCommon") {
     config.setFrom(files("$rootDir/config/detekt/detekt.yml"))
     setSource(files(
         "$projectDir/src/commonMain/kotlin",
-        "$projectDir/src/commonTest/kotlin"
+        "$projectDir/src/commonTest/kotlin",
+        "$rootDir/core/network/src/commonMain/kotlin"
     ))
     include("**/*.kt")
     include("**/*.kts")
